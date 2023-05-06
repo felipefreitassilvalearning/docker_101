@@ -1,54 +1,19 @@
-Comands:
+## Database
+
+### Step by step
 
 ```bash
-docker build -t <image_name> -f <dockerfile_name>
+    docker build -t mysql-image -f api/db/Dockerfile .
 ```
--t = tag (name of the image)
-<br>-f = file (dockerfile path)
-<br><dockerfile_name> = api/db/Dockerfile .
 
 ```bash
-docker image ls
+docker run -d -v %cd%\api\db\data:/var/lib/mysql --rm --name mysql-container mysql-image
 ```
-List all images
 
 ```bash
-docker run -d --rm --name <container_name> <image_name>
+docker exec -i mysql-container mysql -uroot -padmin < api/db/script.sql
 ```
--d = detached mode (run in background, not blocking terminal)
-<br>--rm = remove container after stop
-<br>--name = name of the container
 
 ```bash
-docker ps
+docker exec -it mysql-container /bin/bash
 ```
-List all containers
-
-```bash
-docker exec -i <container_name> <command>
-```
--i = interactive mode (keep STDIN open even if not attached)
-
-<br><command> = mysql -uroot -p{{MYSQL_ROOT_PASSWORD}} < api/db/script.sql
-
-```bash
-docker exec -it <container_name> /bin/bash
-```
--t = allocate a pseudo-TTY (terminal)
-<br>Verificar banco:
-<br>mysql -uroot -p{{MYSQL_ROOT_PASSWORD}}
-
-```bash
-docker stop <container_name>
-```
-Stop container
-
-```bash
-docker run -d -v <host_path>:<container_path> --rm --name <container_name> <image_name>
-```
--v = volume (host_path:container_path)
-<br><host_path> = current path
-<br>    Linux = $(pwd)/api/db/data
-<br>    Windows = %cd%\api\db\data
-<br><container_path> = path inside container
-<br>    :/var/lib/mysql
