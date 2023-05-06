@@ -1,0 +1,22 @@
+{
+  "name": "docker_101",
+  "version": "1.0.0",
+  "description": "Tutorial Básico de Docker",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon ./src/index"
+  },
+  "keywords": [
+    "Docker"
+  ],
+  "author": "Felipe Freitas",
+  "license": "MIT",
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "mysql": "^2.18.1"
+  },
+  "type": "module"
+}
