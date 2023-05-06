@@ -1,10 +1,11 @@
 Comands:
 
 ```bash
-docker build -t <image_name> -f <dockerfile_name> api/db/Dockerfile .
+docker build -t <image_name> -f <dockerfile_name>
 ```
 -t = tag (name of the image)
 <br>-f = file (dockerfile path)
+<br><dockerfile_name> = api/db/Dockerfile .
 
 ```bash
 docker image ls
@@ -24,7 +25,7 @@ docker ps
 List all containers
 
 ```bash
-docker exec -it <container_name> <command>
+docker exec -i <container_name> <command>
 ```
 -i = interactive mode (keep STDIN open even if not attached)
 
@@ -34,6 +35,8 @@ docker exec -it <container_name> <command>
 docker exec -it <container_name> /bin/bash
 ```
 -t = allocate a pseudo-TTY (terminal)
+<br>Verificar banco:
+<br>mysql -uroot -p{{MYSQL_ROOT_PASSWORD}}
 
 ```bash
 docker stop <container_name>
@@ -45,7 +48,7 @@ docker run -d -v <host_path>:<container_path> --rm --name <container_name> <imag
 ```
 -v = volume (host_path:container_path)
 <br><host_path> = current path
-<br>    Linux = $(pwd)
-<br>    Windows = %cd%\api\db\mysql
+<br>    Linux = $(pwd)/api/db/data
+<br>    Windows = %cd%\api\db\data
 <br><container_path> = path inside container
 <br>    :/var/lib/mysql
